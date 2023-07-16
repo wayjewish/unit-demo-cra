@@ -53,13 +53,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: RELEASE ${{ github.ref }}
-          body: |
-            RELEASE ${{ github.ref }}
-            fromTag: ${{ steps.changelog.outputs.fromTag }}
-            toTag: ${{ steps.changelog.outputs.toTag }}
-            changelog: ${{ steps.changelog.outputs.changelog }}
-            commits: ${{ steps.changelog.outputs.commits }}
-            cache: ${{ steps.changelog.outputs.cache }}
+          body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
 
@@ -69,5 +63,5 @@ jobs:
         id: issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh issue create --title "RELEASE ${{ github.ref }}" --body "Дата релиза $NOW \n Автор ${{ steps.changelog.outputs.owner }} \n Версия релиза ${{ github.ref }} \n changelog ${{steps.github_release.outputs.changelog}}"
+        run: gh issue create --title "RELEASE ${{ github.ref }}" --body "Дата релиза ${{ github.event.pusher.date }} \n Автор ${{ github.event.pusher.name }} \n Версия релиза ${{ github.ref }} \n changelog ${{ steps.changelog.outputs }}"
 
