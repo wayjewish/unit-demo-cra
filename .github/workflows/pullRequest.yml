@@ -1,8 +1,5 @@
-name: ci
+name: test
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -16,6 +13,7 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
+
   e2e:
     runs-on: ubuntu-latest
     steps:
