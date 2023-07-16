@@ -9,10 +9,6 @@ import { Provider } from "react-redux";
 import { initStore } from "./store";
 import { Application } from "./Application";
 
-it('fail test', () => {
-  expect(false).toEqual(true);
-});
-
 it('по адресу /about должна открываться страница "о проекте"', () => {
   const store = initStore();
   const application = (
