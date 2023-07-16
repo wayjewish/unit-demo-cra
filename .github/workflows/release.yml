@@ -3,7 +3,11 @@ name: release
 on:
   push:
     tags:
-      - 'v*'
+      - v*
+
+permissions:
+  contents: write
+  issues: write
 
 jobs:
   # unit:
@@ -51,8 +55,8 @@ jobs:
           release_name: RELEASE ${{ github.ref }}
           body: |
             RELEASE ${{ github.ref }}
-            fromTag: ${{ steps.changelog.outputs.fromTag}}
-            toTag: ${{ steps.changelog.outputs.toTag}}
+            fromTag: ${{ steps.changelog.outputs.fromTag }}
+            toTag: ${{ steps.changelog.outputs.toTag }}
             changelog: ${{ steps.changelog.outputs.changelog }}
             commits: ${{ steps.changelog.outputs.commits }}
             cache: ${{ steps.changelog.outputs.cache }}
